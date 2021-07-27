@@ -11,10 +11,7 @@ async function movieExists(req, res, next) {
 }
 
 async function list(req, res, next) {
-  if (req.query.is_showing) {
-    res.json({ data: await service.moviesInTheaters() });
-  }
-  res.json({ data: await service.list() });
+  res.json({ data: await service.list(req.query.is_showing) });
 }
 
 async function read(req, res, next) {
