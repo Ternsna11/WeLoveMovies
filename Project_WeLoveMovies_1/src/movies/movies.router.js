@@ -3,8 +3,8 @@ const controller = require("./movies.controller");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const methodNotAllowed = require("../errors/methodNotAllowed");
 
-router.route("/").get(controller.list);
+router.route("/:movieId").get(controller.read).all(methodNotAllowed);
 
-router.route("/:movieID");
+router.route("/").get(controller.list).all(methodNotAllowed);
 
 module.exports = router;

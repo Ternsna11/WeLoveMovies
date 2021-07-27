@@ -26,7 +26,15 @@ function moviesInTheaters() {
     );
 }
 
+function read(movie_id) {
+  return knex("movies as m").select("*").where({ movie_id }).first();
+}
+
+function 
+
+
 module.exports = {
   list,
   moviesInTheaters,
+  read,
 };
