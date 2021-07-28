@@ -1,14 +1,15 @@
 if (process.env.USER) require("dotenv").config();
 const express = require("express");
-
+const cors = require("cors");
 const errorHandler = require("./errors/errorHandler");
 const notFound = require("./errors/notFound");
-const { reviewsList } = require("./movies/movies.controller");
 const moviesRouter = require("./movies/movies.router");
 const reviewsRouter = require("./reviews/reviews.router");
 const theaterRouter = require("./theaters/theaters.router");
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 app.use("/movies", moviesRouter);
