@@ -1,5 +1,5 @@
 const knex = require("../db/connection");
-const mapProperties = require("../utils/map-properties");
+
 
 function readCritic(critic_id) {
   return knex("critics").where({ critic_id }).first();
