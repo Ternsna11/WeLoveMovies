@@ -2,7 +2,7 @@ const service = require("./reviews.service");
 const hasProperties = require("../errors/hasProperties");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
-const hasRequiredProperties = hasProperties("score" || "content");
+
 
 const VALID_PROPERTIES = [
   "review_id",
@@ -15,17 +15,6 @@ const VALID_PROPERTIES = [
   "critic",
 ];
 
-async function hasValidProperties(req, res, next) {
-  const { data = {} } = req.body;
-  const invalidFields = Object.keys(data).filter(
-    (field) => !VALID_PROPERTIES.includes(field)
-  );
-  if (invalidFields.length)
-    return next({
-      status: 400,
-      message: `Invalid field(s): ${invalidFields.join(", ")}`,
-    });
-}
 
 async function reviewExists(req, res, next) {
   const review = await service.read(req.params.reviewId);
@@ -57,7 +46,7 @@ module.exports = {
   delete: [asyncErrorBoundary(reviewExists), asyncErrorBoundary(destroy)],
   update: [
     asyncErrorBoundary(reviewExists),
-    hasValidProperties, hasRequiredProperties,
+   
     asyncErrorBoundary(update),
   ],
 };

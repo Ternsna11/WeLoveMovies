@@ -1,5 +1,7 @@
 const knex = require("../db/connection");
 const mapProperties = require("../utils/map-properties");
+
+
 function list(is_showing) {
   return knex("movies as m")
     .select("m.*")
