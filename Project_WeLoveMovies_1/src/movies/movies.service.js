@@ -68,7 +68,20 @@ const addCritic = mapProperties({
 
 function reviewsByMovie(movie_id) {
   return knex("movies")
-    .select("*")
+    .select(
+      "reviews.review_id",
+      "reviews.content",
+      "reviews.score",
+      "movies.movie_id",
+      // "reviews.created_at",
+      // "reviews.updated_at", these are not showing up
+      "critics.critic_id",
+      "critics.preferred_name",
+      "critics.surname",
+      "critics.organization_name",
+      "critics.created_at",
+      "critics.updated_at"
+    )
     .join("reviews", "movies.movie_id", "reviews.movie_id")
     .join("critics", "reviews.critic_id", "critics.critic_id")
     .where({ "movies.movie_id": movie_id })

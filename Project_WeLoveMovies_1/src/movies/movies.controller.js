@@ -1,6 +1,6 @@
 const service = require("./movies.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
-const { as } = require("../db/connection");
+
 
 async function movieExists(req, res, next) {
   const movie = await service.read(req.params.movieId);
